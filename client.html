@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="send()">发送</button>
+    <script>
+      function send() {
+        var params = {
+          order_taking_area: "上海",
+          money: 1000,
+        };
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("post", "http://127.0.0.1:3000/leter");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(JSON.stringify(params));
+        xhr.onreadystatechange = function () {
+          // 判断服务器是否响应，判断异步对象的响应状态
+          if (xhr.status == 200 && xhr.readyState == 4) {
+            console.log(xhr.responseText);
+          }
+        };
+      }
+    </script>
+  </body>
+</html>
